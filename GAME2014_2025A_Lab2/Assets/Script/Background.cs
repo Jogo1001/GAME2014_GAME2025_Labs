@@ -4,7 +4,7 @@ public class Background : MonoBehaviour
 {
 
     [SerializeField]
-    public float lowerbackground,upperbackground;
+    Boundary verticalBoundary;
     [SerializeField]
     public float speed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,9 +18,9 @@ public class Background : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x, transform.position.y - speed * Time.deltaTime,transform.position.z);
 
-        if(transform.position.y < lowerbackground)
+        if(transform.position.y < verticalBoundary.min)
         {
-            transform.position = new Vector3 ( transform.position.x, upperbackground, transform.position.z);
+            transform.position = new Vector3 ( transform.position.x, verticalBoundary.max, transform.position.z);
         }
     }
 }

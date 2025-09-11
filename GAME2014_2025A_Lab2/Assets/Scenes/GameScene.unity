@@ -950,6 +950,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1496290130066077353, guid: 6f201c167ea91cc45b81c7eeeaea6256, type: 3}
+      propertyPath: verticalBoundary.max
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496290130066077353, guid: 6f201c167ea91cc45b81c7eeeaea6256, type: 3}
+      propertyPath: verticalBoundary.min
+      value: -8
+      objectReference: {fileID: 0}
     - target: {fileID: 1565970489196597506, guid: 6f201c167ea91cc45b81c7eeeaea6256, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1013,7 +1021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7128013339854865758, guid: 89f37d70cdcc8924da0f34b1edf84929, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.63
+      value: 10.98
       objectReference: {fileID: 0}
     - target: {fileID: 7128013339854865758, guid: 89f37d70cdcc8924da0f34b1edf84929, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1054,6 +1062,14 @@ PrefabInstance:
     - target: {fileID: 8307467468374480871, guid: 89f37d70cdcc8924da0f34b1edf84929, type: 3}
       propertyPath: upperbackground
       value: 11.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307467468374480871, guid: 89f37d70cdcc8924da0f34b1edf84929, type: 3}
+      propertyPath: verticalBoundary.max
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307467468374480871, guid: 89f37d70cdcc8924da0f34b1edf84929, type: 3}
+      propertyPath: verticalBoundary.min
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 8722236791805646291, guid: 89f37d70cdcc8924da0f34b1edf84929, type: 3}
       propertyPath: m_Name
