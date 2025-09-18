@@ -27,6 +27,9 @@ public class EnemyBehaviour : MonoBehaviour
     {
         transform.Translate(Vector3.down * speed * Time.deltaTime);
 
+        float xPos = Mathf.PingPong(Time.time * speed, screenHorizontalBoundary.max - screenHorizontalBoundary.min) + screenHorizontalBoundary.min;
+        transform.position = new Vector3 (xPos, transform.position.y - speed  * Time.deltaTime);
+
         if(screenVerticalBoundary.min > transform.position.y)
         {
 
