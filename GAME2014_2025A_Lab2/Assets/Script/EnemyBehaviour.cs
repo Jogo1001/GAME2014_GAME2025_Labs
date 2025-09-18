@@ -18,7 +18,7 @@ public class EnemyBehaviour : MonoBehaviour
     void Start()
     {
         speed = Random.Range(speedRange.min, speedRange.max);
-
+        Reset();
         
     }
 
@@ -30,12 +30,16 @@ public class EnemyBehaviour : MonoBehaviour
         if(screenVerticalBoundary.min > transform.position.y)
         {
 
-            transform.position = new Vector3 (Random.Range(screenHorizontalBoundary.min, screenHorizontalBoundary.max),
-                                                            screenVerticalBoundary.max,  transform.position.z);
-            speed = Random.Range(speedRange.min, speedRange.max);
+          Reset();
 
         }
 
 
+    }
+    private void Reset()
+    {
+        transform.position = new Vector3(Random.Range(screenHorizontalBoundary.min, screenHorizontalBoundary.max),
+                                                        screenVerticalBoundary.max, transform.position.z);
+        speed = Random.Range(speedRange.min, speedRange.max);
     }
 }
