@@ -45,4 +45,5 @@ public class EnemyBehaviour : MonoBehaviour
                                                         screenVerticalBoundary.max, transform.position.z);
         speed = Random.Range(speedRange.min, speedRange.max);
     }
+ 
 }

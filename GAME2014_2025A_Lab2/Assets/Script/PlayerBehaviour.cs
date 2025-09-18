@@ -69,5 +69,13 @@ public class PlayerBehaviour : MonoBehaviour
                                           Mathf.Clamp(transform.position.y, VerticalBoundary.min, VerticalBoundary.max),
                                           transform.position.z);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            Debug.Log("You Got Hit!");
+        }
+
+    }
 
 }
