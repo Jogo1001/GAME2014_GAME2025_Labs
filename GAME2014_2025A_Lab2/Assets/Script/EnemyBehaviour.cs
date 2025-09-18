@@ -1,0 +1,41 @@
+using UnityEngine;
+
+public class EnemyBehaviour : MonoBehaviour
+{
+
+    [SerializeField]
+    Boundary speedRange;
+    float speed;
+
+    [SerializeField]
+    Boundary screenHorizontalBoundary;
+
+    [SerializeField]
+    Boundary screenVerticalBoundary;
+
+
+  
+    void Start()
+    {
+        speed = Random.Range(speedRange.min, speedRange.max);
+
+        
+    }
+
+   
+    void Update()
+    {
+        transform.Translate(Vector3.down * speed * Time.deltaTime);
+
+        if(screenVerticalBoundary.min > transform.position.y)
+        {
+
+            transform.position = new Vector3 (Random.Range(screenHorizontalBoundary.min, screenHorizontalBoundary.max),
+                                                            screenVerticalBoundary.max,  transform.position.z);
+            speed = Random.Range(speedRange.min, speedRange.max);
+
+        }
+
+
+    }
+}
