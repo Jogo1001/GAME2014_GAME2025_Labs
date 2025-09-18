@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerBehaviour : MonoBehaviour
@@ -11,7 +12,8 @@ public class PlayerBehaviour : MonoBehaviour
     InputActionAsset _playerController;
 
     public Vector2 Direction;
-
+    public Vector2 Destination;
+    Camera camera;
 
 
     [SerializeField]
@@ -26,10 +28,18 @@ public class PlayerBehaviour : MonoBehaviour
     void Start()
     {
         MoveInput = _playerController.FindAction("Move");
+        camera = Camera.main;
+    }
+    private void Update()
+    {
+
+        TouchScreenMove();
+        //TraditionalMove();
+        CheckBoundaries();
     }
 
     // Update is called once per frame
-    void Update()
+    void TraditionalMove() // Keyboard
     {
         Direction = MoveInput.ReadValue<Vector2>();
         Debug.Log(Direction);
@@ -38,7 +48,20 @@ public class PlayerBehaviour : MonoBehaviour
                                          , transform.position.z);
 
 
-        CheckBoundaries();
+        
+    }
+
+    void TouchScreenMove() //Touchscreen
+    {
+    /*    old input system
+        foreach(Touch touch in Input.touches)
+        {
+            Destination = camera.ScreenToWorldPoint(touch.position);
+        }*/
+        Destination = camera.ScreenToWorldPoint(MoveInput.ReadValue<Vector2>());
+        transform.position = Vector3.Lerp(transform.position, Destination, speed * Time.deltaTime);
+        //transform.position = Destination;
+
     }
     public void CheckBoundaries()
     {
