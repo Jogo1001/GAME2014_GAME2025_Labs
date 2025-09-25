@@ -79,6 +79,11 @@ public class PlayerBehaviour : MonoBehaviour
         {
             Debug.Log("You Got Hit!");
             gamecontroller.ChangeScore(-5);
+
+
+            collision.GetComponent<SpriteRenderer>().enabled = false;
+            collision.enabled = false;
+           // collision.gameObject.SetActive(false);
         }
 
 
