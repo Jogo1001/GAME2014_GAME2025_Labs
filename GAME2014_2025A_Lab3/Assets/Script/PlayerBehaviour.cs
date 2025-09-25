@@ -24,11 +24,15 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField]
     public float speed;
+
+    GameController gamecontroller;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         MoveInput = _playerController.FindAction("Move");
         camera = Camera.main;
+
+        gamecontroller = FindObjectOfType<GameController>();
     }
     private void Update()
     {
@@ -74,7 +78,9 @@ public class PlayerBehaviour : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             Debug.Log("You Got Hit!");
+            gamecontroller.ChangeScore(-5);
         }
+
 
     }
 
