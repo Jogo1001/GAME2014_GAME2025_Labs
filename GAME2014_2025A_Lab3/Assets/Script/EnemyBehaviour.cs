@@ -15,9 +15,14 @@ public class EnemyBehaviour : MonoBehaviour
 
 
     bool IsDying = false;
+
+    BulletManager bulletManager;
+    GameController gameController;
   
     void Start()
     {
+        bulletManager = FindObjectOfType<BulletManager>();
+        gameController = FindObjectOfType<GameController>();
         speed = Random.Range(speedRange.min, speedRange.max);
         Reset();
         
@@ -61,6 +66,15 @@ public class EnemyBehaviour : MonoBehaviour
         GetComponent<SpriteRenderer>().color = Color.red;
         IsDying = true;
         // collision.gameObject.SetActive(false);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Bullet"))
+        {
+            DestroyingSequence();
+            bulletManager.ReturnBullet(collision.gameObject);
+            gameController.ChangeScore(5);
+        }
     }
     private void Reset()
     {
