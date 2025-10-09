@@ -16,6 +16,7 @@ public class PlayerBehaviour : MonoBehaviour
     public Vector2 Destination;
     Camera camera;
     GameController gamecontroller;
+    BulletManager bulletManager;
 
     [SerializeField]
     Boundary VerticalBoundary;
@@ -27,17 +28,21 @@ public class PlayerBehaviour : MonoBehaviour
     public float speed;
 
 
-    [SerializeField]
+
     GameObject bulletPrefab;
 
+    [SerializeField]
+    float shootingSpeed;
 
-    
+
+
     void Start()
     {
         MoveInput = _playerController.FindAction("Move");
         camera = Camera.main;
-
+        bulletManager = FindObjectOfType<BulletManager>();
         gamecontroller = FindObjectOfType<GameController>();
+        bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet");
 
         StartCoroutine(ShootingRoutine());
     }
@@ -51,8 +56,9 @@ public class PlayerBehaviour : MonoBehaviour
     }
     IEnumerator ShootingRoutine()
     {
-        yield return new WaitForSeconds(1);
-        Instantiate(bulletPrefab).transform.position = transform.position;
+        yield return new WaitForSeconds(shootingSpeed);
+        // Instantiate(bulletPrefab).transform.position = transform.position;
+        bulletManager.GetBullet().transform.position = transform.position;
         StartCoroutine(ShootingRoutine());
     }
   

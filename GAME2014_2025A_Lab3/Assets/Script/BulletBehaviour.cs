@@ -10,9 +10,12 @@ public class BulletBehaviour : MonoBehaviour
 
     Vector3 direction;
 
+    BulletManager manager;
+
     void Start()
     {
         direction = transform.up;
+        manager = FindObjectOfType<BulletManager>();
     }
 
 
@@ -21,7 +24,7 @@ public class BulletBehaviour : MonoBehaviour
         transform.Translate(direction* speed * Time.deltaTime);
         if(transform.position.y > verticalboundry.max)
         {
-            Destroy(gameObject);
+            manager.ReturnBullet(gameObject);
         }
     }
 }
