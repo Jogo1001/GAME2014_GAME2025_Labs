@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,7 +15,7 @@ public class PlayerBehaviour : MonoBehaviour
     public Vector2 Direction;
     public Vector2 Destination;
     Camera camera;
-
+    GameController gamecontroller;
 
     [SerializeField]
     Boundary VerticalBoundary;
@@ -25,24 +26,36 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField]
     public float speed;
 
-    GameController gamecontroller;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [SerializeField]
+    GameObject bulletPrefab;
+
+
+    
     void Start()
     {
         MoveInput = _playerController.FindAction("Move");
         camera = Camera.main;
 
         gamecontroller = FindObjectOfType<GameController>();
+
+        StartCoroutine(ShootingRoutine());
     }
     private void Update()
     {
 
         TouchScreenMove();
-        //TraditionalMove();
+       // TraditionalMove();
         CheckBoundaries();
+     
     }
-
-    // Update is called once per frame
+    IEnumerator ShootingRoutine()
+    {
+        yield return new WaitForSeconds(1);
+        Instantiate(bulletPrefab).transform.position = transform.position;
+        StartCoroutine(ShootingRoutine());
+    }
+  
     void TraditionalMove() // Keyboard
     {
         Direction = MoveInput.ReadValue<Vector2>();
@@ -57,14 +70,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     void TouchScreenMove() //Touchscreen
     {
-    /*    old input system
-        foreach(Touch touch in Input.touches)
-        {
-            Destination = camera.ScreenToWorldPoint(touch.position);
-        }*/
+  
         Destination = camera.ScreenToWorldPoint(MoveInput.ReadValue<Vector2>());
         transform.position = Vector3.Lerp(transform.position, Destination, speed * Time.deltaTime);
-        //transform.position = Destination;
+  
 
     }
     public void CheckBoundaries()
