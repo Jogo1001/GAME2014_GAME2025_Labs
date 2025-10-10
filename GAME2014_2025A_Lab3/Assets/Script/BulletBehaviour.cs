@@ -14,17 +14,23 @@ public class BulletBehaviour : MonoBehaviour
 
     void Start()
     {
-        direction = transform.up;
+        if (direction == Vector3.zero)
+            direction = transform.up;
         manager = FindObjectOfType<BulletManager>();
     }
 
 
     void Update()
     {
-        transform.Translate(direction* speed * Time.deltaTime);
-        if(transform.position.y > verticalboundry.max)
+        transform.Translate(direction* speed * Time.deltaTime, Space.World);
+        if (transform.position.y > verticalboundry.max || transform.position.y < verticalboundry.min)
         {
             manager.ReturnBullet(gameObject);
         }
+    }
+
+    public void SetDirection(Vector3 dir)
+    {
+        direction = dir.normalized;
     }
 }

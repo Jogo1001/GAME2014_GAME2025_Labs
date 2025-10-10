@@ -63,13 +63,14 @@ public class EnemyBehaviour : MonoBehaviour
 
       //  GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
+        GetComponent<BulletShooter>().StopShooting();   
         GetComponent<SpriteRenderer>().color = Color.red;
         IsDying = true;
         // collision.gameObject.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Bullet"))
+        if(collision.CompareTag("PlayerBullet"))
         {
             DestroyingSequence();
             bulletManager.ReturnBullet(collision.gameObject);
@@ -89,6 +90,7 @@ public class EnemyBehaviour : MonoBehaviour
         transform.rotation = Quaternion.Euler(Vector3.zero);
         transform.localScale = Vector3.one;
         GetComponent<SpriteRenderer>().color = Color.white;
+        GetComponent<BulletShooter>().StartShooting();
     }
  
 }

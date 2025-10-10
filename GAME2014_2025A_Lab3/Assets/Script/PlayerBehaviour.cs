@@ -16,7 +16,7 @@ public class PlayerBehaviour : MonoBehaviour
     public Vector2 Destination;
     Camera camera;
     GameController gamecontroller;
-    BulletManager bulletManager;
+
 
     [SerializeField]
     Boundary VerticalBoundary;
@@ -31,8 +31,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     GameObject bulletPrefab;
 
-    [SerializeField]
-    float shootingSpeed;
+
 
 
 
@@ -40,11 +39,11 @@ public class PlayerBehaviour : MonoBehaviour
     {
         MoveInput = _playerController.FindAction("Move");
         camera = Camera.main;
-        bulletManager = FindObjectOfType<BulletManager>();
+    
         gamecontroller = FindObjectOfType<GameController>();
         bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet");
 
-        StartCoroutine(ShootingRoutine());
+       // StartCoroutine(ShootingRoutine());
     }
     private void Update()
     {
@@ -54,13 +53,13 @@ public class PlayerBehaviour : MonoBehaviour
         CheckBoundaries();
      
     }
-    IEnumerator ShootingRoutine()
+/*    IEnumerator ShootingRoutine()
     {
         yield return new WaitForSeconds(shootingSpeed);
         // Instantiate(bulletPrefab).transform.position = transform.position;
         bulletManager.GetBullet().transform.position = transform.position;
         StartCoroutine(ShootingRoutine());
-    }
+    }*/
   
     void TraditionalMove() // Keyboard
     {
@@ -93,13 +92,17 @@ public class PlayerBehaviour : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             Debug.Log("You Got Hit!");
-            gamecontroller.ChangeScore(-5);
+            gamecontroller.ChangeScore(-10);
 
             collision.GetComponent<EnemyBehaviour>().DestroyingSequence();
 
 
         }
-
+        else if(collision.CompareTag("EnemyBullet"))
+        {
+            gamecontroller.ChangeScore(-5);
+            FindObjectOfType<BulletManager>().ReturnBullet(collision.gameObject);
+        }
 
     }
 
