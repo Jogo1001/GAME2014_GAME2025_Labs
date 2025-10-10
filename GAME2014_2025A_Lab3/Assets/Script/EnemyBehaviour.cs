@@ -73,7 +73,7 @@ public class EnemyBehaviour : MonoBehaviour
         if(collision.CompareTag("PlayerBullet"))
         {
             DestroyingSequence();
-            bulletManager.ReturnBullet(collision.gameObject);
+            bulletManager.ReturnBullet(collision.gameObject, BulletTag.PlayerBullet);
             gameController.ChangeScore(5);
         }
     }

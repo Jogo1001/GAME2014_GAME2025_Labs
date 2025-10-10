@@ -101,7 +101,7 @@ public class PlayerBehaviour : MonoBehaviour
         else if(collision.CompareTag("EnemyBullet"))
         {
             gamecontroller.ChangeScore(-5);
-            FindObjectOfType<BulletManager>().ReturnBullet(collision.gameObject);
+            FindObjectOfType<BulletManager>().ReturnBullet(collision.gameObject, BulletTag.EnemyBullet);
         }
 
     }

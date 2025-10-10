@@ -11,6 +11,7 @@ public class BulletBehaviour : MonoBehaviour
     Vector3 direction;
 
     BulletManager manager;
+    public BulletTag bulletTag;
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class BulletBehaviour : MonoBehaviour
         transform.Translate(direction* speed * Time.deltaTime, Space.World);
         if (transform.position.y > verticalboundry.max || transform.position.y < verticalboundry.min)
         {
-            manager.ReturnBullet(gameObject);
+            manager.ReturnBullet(gameObject, bulletTag);
         }
     }
 
