@@ -21,7 +21,6 @@ public class BulletShooter : MonoBehaviour
         yield return new WaitForSeconds(shootingSpeed);
       
         GameObject bullet = bulletManager.GetBullet(tag);
-        bullet.GetComponent<BulletBehaviour>().bulletTag = tag;
         bullet.transform.position = transform.position;
 
         StartCoroutine(ShootingRoutine());

@@ -42,6 +42,7 @@ public class BulletManager : MonoBehaviour
 
         }
         GameObject bullet = pools[(int)tag].Dequeue();
+
         bullet.SetActive(true);
         return bullet;
 

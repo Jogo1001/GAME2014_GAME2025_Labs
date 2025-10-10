@@ -34,4 +34,8 @@ public class BulletBehaviour : MonoBehaviour
     {
         direction = dir.normalized;
     }
+    public void SetTag(BulletTag btag)
+    {
+        bulletTag = btag;
+    }
 }
