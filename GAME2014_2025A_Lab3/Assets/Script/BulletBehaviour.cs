@@ -11,7 +11,7 @@ public class BulletBehaviour : MonoBehaviour
     Vector3 direction;
 
     BulletManager manager;
-    public BulletTag bulletTag;
+    BulletTag bulletTag;
 
     void Start()
     {

@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class BulletFactory : MonoBehaviour
 {
+    [SerializeField]
     GameObject playerBulletPrefab;
+    [SerializeField]
     GameObject enemyBulletPrefab;
-    void Start()
+/*    void Start()
     {
         playerBulletPrefab = Resources.Load<GameObject>("Prefabs/PlayerBullet");
         enemyBulletPrefab = Resources.Load<GameObject>("Prefabs/EnemyBullet");
-    }
+    }*/
 
 
 

@@ -504,7 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6161e6e9b39fa4c90bf9f98ca1c92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletManager
-  bulletTotal: 10
+  bulletTotal: 20
 --- !u!4 &740228370
 Transform:
   m_ObjectHideFlags: 0
@@ -929,6 +929,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd8cf14ec77d30428d4ec0d84f2145d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletFactory
+  playerBulletPrefab: {fileID: 8802405077608703514, guid: d22977e25ab8d654a9e0f6ad7433e7a6, type: 3}
+  enemyBulletPrefab: {fileID: 8802405077608703514, guid: 3fa289c2acfdff14e8fc9b03993bc939, type: 3}
 --- !u!4 &1903710389
 Transform:
   m_ObjectHideFlags: 0
@@ -999,7 +1001,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 877125996329571091, guid: 6d8f201d6080baf489790174b81c8ddc, type: 3}
       propertyPath: shootingSpeed
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4230556354833338757, guid: 6d8f201d6080baf489790174b81c8ddc, type: 3}
       propertyPath: m_LocalPosition.x
