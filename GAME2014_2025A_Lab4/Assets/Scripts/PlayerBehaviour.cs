@@ -8,8 +8,9 @@ public class PlayerBehaviour : MonoBehaviour
     InputActionAsset inputAsset;
     InputAction moveInput;
     [SerializeField]
-    JoystickController screenJoystick; 
+    JoystickController screenJoystick;
     Rigidbody2D rb;
+    Animator animator;
 
     [SerializeField]
     float horizontalSpeed;
@@ -32,10 +33,12 @@ public class PlayerBehaviour : MonoBehaviour
     {
         moveInput = inputAsset.FindAction("Move");
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
     private void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundPoint.position, groundCheckRadius, groundLayerMask);
+        AnimationStateController();
 
     }
     // Update is called once per frame
@@ -43,8 +46,35 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Move();
         Jump();
+       
     }
-   
+    void AnimationStateController()
+    {
+        if (isGrounded)
+        {
+            if (rb.linearVelocityX > 0.1f || rb.linearVelocityX < -0.1f)
+            {
+                animator.SetInteger("State", 1);
+            }
+            else
+            {
+                animator.SetInteger("State", 0);
+            }
+        }
+        else
+        {
+            if(rb.linearVelocityY >= 0f)
+            {
+                animator.SetInteger("State", 2);
+
+            }
+            else 
+            {
+                animator.SetInteger("State", 3);
+            }
+
+        }
+    }
     void Move()
     {
 
