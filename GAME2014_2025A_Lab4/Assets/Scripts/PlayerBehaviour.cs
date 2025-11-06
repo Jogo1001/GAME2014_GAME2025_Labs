@@ -11,6 +11,7 @@ public class PlayerBehaviour : MonoBehaviour
     JoystickController screenJoystick;
     Rigidbody2D rb;
     Animator animator;
+    AnimationState state;
 
     [SerializeField]
     float horizontalSpeed;
@@ -54,26 +55,27 @@ public class PlayerBehaviour : MonoBehaviour
         {
             if (rb.linearVelocityX > 0.1f || rb.linearVelocityX < -0.1f)
             {
-                animator.SetInteger("State", 1);
+                state = AnimationState.RUN;
             }
             else
             {
-                animator.SetInteger("State", 0);
+                state = AnimationState.IDLE;
             }
         }
         else
         {
             if(rb.linearVelocityY >= 0f)
             {
-                animator.SetInteger("State", 2);
+                state = AnimationState.JUMP;
 
             }
             else 
             {
-                animator.SetInteger("State", 3);
+                state = AnimationState.FALL;
             }
-
+           
         }
+        animator.SetInteger("State", (int)state);
     }
     void Move()
     {
